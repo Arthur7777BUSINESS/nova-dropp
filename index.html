@@ -1,2429 +1,782 @@
+```html
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>NOVA DROP — NOVA STAND</title>
-
-  <meta
-    name="description"
-    content="NOVA STAND — support pliable pour ordinateur portable."
-  >
-
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    :root {
-      --black: #080808;
-      --dark: #111;
-      --white: #fff;
-      --gray: #737373;
-      --light: #f5f5f5;
-      --border: #e7e7e7;
-      --green: #16803c;
-      --red: #b42318;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      font-family: Arial, Helvetica, sans-serif;
-      color: var(--black);
-      background: var(--white);
-      line-height: 1.5;
-    }
-
-    button,
-    input,
-    select,
-    textarea {
-      font: inherit;
-    }
-
-    button {
-      cursor: pointer;
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    /* =========================
-       HEADER
-    ========================= */
-
-    header {
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      background: rgba(255,255,255,.95);
-      backdrop-filter: blur(15px);
-      border-bottom: 1px solid var(--border);
-    }
-
-    .nav {
-      max-width: 1200px;
-      height: 72px;
-      margin: auto;
-      padding: 0 20px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .logo {
-      font-size: 21px;
-      font-weight: 900;
-      letter-spacing: -1px;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 28px;
-      font-size: 14px;
-    }
-
-    .nav-links a:hover {
-      opacity: .55;
-    }
-
-    .cart-btn {
-      background: var(--black);
-      color: white;
-      border: 0;
-      padding: 11px 16px;
-      border-radius: 999px;
-      font-weight: 700;
-    }
-
-    /* =========================
-       GENERAL
-    ========================= */
-
-    section {
-      padding: 90px 20px;
-    }
-
-    .container {
-      max-width: 1200px;
-      margin: auto;
-    }
-
-    .eyebrow {
-      font-size: 12px;
-      font-weight: 800;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      margin-bottom: 15px;
-    }
-
-    .section-title {
-      font-size: clamp(40px, 6vw, 70px);
-      line-height: .95;
-      letter-spacing: -4px;
-      margin-bottom: 45px;
-    }
-
-    /* =========================
-       HERO
-    ========================= */
-
-    .hero {
-      background: var(--light);
-      min-height: 650px;
-      display: flex;
-      align-items: center;
-    }
-
-    .hero-grid {
-      width: 100%;
-      max-width: 1200px;
-      margin: auto;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 60px;
-      align-items: center;
-    }
-
-    .hero h1 {
-      font-size: clamp(60px, 9vw, 100px);
-      line-height: .85;
-      letter-spacing: -6px;
-      margin-bottom: 25px;
-    }
-
-    .hero p {
-      color: #555;
-      font-size: 18px;
-      max-width: 520px;
-      margin-bottom: 30px;
-    }
-
-    .btn {
-      display: inline-flex;
-      justify-content: center;
-      align-items: center;
-      padding: 15px 24px;
-      border-radius: 999px;
-      background: var(--black);
-      color: white;
-      font-weight: 800;
-      border: 1px solid var(--black);
-    }
-
-    .btn-light {
-      background: white;
-      color: black;
-      margin-left: 6px;
-    }
-
-    /* =========================
-       PRODUCT VISUAL
-    ========================= */
-
-    .visual {
-      min-height: 430px;
-      display: grid;
-      place-items: center;
-    }
-
-    .product-scene {
-      width: 420px;
-      max-width: 90%;
-      height: 380px;
-      position: relative;
-    }
-
-    .laptop {
-      position: absolute;
-      width: 270px;
-      height: 170px;
-      left: 50%;
-      top: 50px;
-      transform: translateX(-50%) rotate(-3deg);
-      border-radius: 9px;
-      background: linear-gradient(145deg,#555,#111);
-      box-shadow: 0 30px 45px rgba(0,0,0,.2);
-    }
-
-    .screen {
-      position: absolute;
-      inset: 9px;
-      border-radius: 4px;
-      background: linear-gradient(135deg,#eee,#aaa);
-    }
-
-    .stand {
-      position: absolute;
-      width: 235px;
-      height: 130px;
-      left: 50%;
-      top: 190px;
-      transform: translateX(-50%) skewX(-8deg);
-      border: 15px solid #999;
-      border-top: 0;
-      border-radius: 0 0 12px 12px;
-    }
-
-    .stand-base {
-      position: absolute;
-      width: 280px;
-      height: 20px;
-      left: 50%;
-      bottom: 35px;
-      transform: translateX(-50%);
-      background: #777;
-      border-radius: 10px;
-    }
-
-    /* =========================
-       FEATURES
-    ========================= */
-
-    .features {
-      display: grid;
-      grid-template-columns: repeat(3,1fr);
-      gap: 20px;
-    }
-
-    .feature {
-      border: 1px solid var(--border);
-      border-radius: 20px;
-      padding: 30px;
-    }
-
-    .feature-number {
-      color: var(--gray);
-      font-size: 12px;
-      font-weight: 900;
-      margin-bottom: 35px;
-    }
-
-    .feature h3 {
-      font-size: 24px;
-      margin-bottom: 10px;
-    }
-
-    .feature p {
-      color: var(--gray);
-    }
-
-    /* =========================
-       PRODUCT
-    ========================= */
-
-    .product-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 70px;
-    }
-
-    .gallery-main {
-      min-height: 520px;
-      background: var(--light);
-      border-radius: 25px;
-      display: grid;
-      place-items: center;
-    }
-
-    .gallery-buttons {
-      display: grid;
-      grid-template-columns: repeat(3,1fr);
-      gap: 8px;
-      margin-top: 10px;
-    }
-
-    .gallery-buttons button {
-      padding: 12px;
-      border: 1px solid var(--border);
-      background: white;
-      border-radius: 10px;
-    }
-
-    .product-info h2 {
-      font-size: 52px;
-      letter-spacing: -3px;
-      margin-bottom: 5px;
-    }
-
-    .subtitle {
-      color: var(--gray);
-      margin-bottom: 25px;
-    }
-
-    .price {
-      font-size: 34px;
-      font-weight: 900;
-    }
-
-    .old-price {
-      color: #999;
-      font-size: 17px;
-      text-decoration: line-through;
-      font-weight: 400;
-      margin-left: 8px;
-    }
-
-    .price-note {
-      color: var(--gray);
-      font-size: 12px;
-      margin: 5px 0 25px;
-    }
-
-    .description {
-      color: #444;
-      margin-bottom: 25px;
-    }
-
-    .specs {
-      list-style: none;
-      border-top: 1px solid var(--border);
-      margin-bottom: 25px;
-    }
-
-    .specs li {
-      padding: 13px 0;
-      border-bottom: 1px solid var(--border);
-      display: flex;
-      justify-content: space-between;
-    }
-
-    .specs span {
-      color: var(--gray);
-    }
-
-    .quantity {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      margin-bottom: 15px;
-    }
-
-    .quantity button {
-      width: 38px;
-      height: 38px;
-      border-radius: 50%;
-      border: 1px solid var(--border);
-      background: white;
-    }
-
-    .add-cart {
-      width: 100%;
-      padding: 17px;
-      background: black;
-      color: white;
-      border: 0;
-      border-radius: 12px;
-      font-weight: 900;
-    }
-
-    .info-box {
-      background: var(--light);
-      border-radius: 15px;
-      padding: 18px;
-      margin-top: 12px;
-      font-size: 14px;
-    }
-
-    /* =========================
-       DARK
-    ========================= */
-
-    .dark {
-      background: black;
-      color: white;
-    }
-
-    .dark p {
-      color: #aaa;
-      max-width: 650px;
-      font-size: 18px;
-    }
-
-    /* =========================
-       FAQ
-    ========================= */
-
-    .faq {
-      max-width: 850px;
-    }
-
-    .faq-item {
-      border-top: 1px solid var(--border);
-    }
-
-    .faq-question {
-      width: 100%;
-      padding: 22px 0;
-      border: 0;
-      background: transparent;
-      display: flex;
-      justify-content: space-between;
-      text-align: left;
-      font-weight: 800;
-    }
-
-    .faq-answer {
-      display: none;
-      color: var(--gray);
-      padding-bottom: 22px;
-    }
-
-    .faq-item.open .faq-answer {
-      display: block;
-    }
-
-    /* =========================
-       CONTACT
-    ========================= */
-
-    .contact {
-      background: var(--light);
-    }
-
-    .contact-form {
-      max-width: 700px;
-    }
-
-    .field {
-      margin-bottom: 16px;
-    }
-
-    .field label {
-      display: block;
-      font-size: 13px;
-      font-weight: 800;
-      margin-bottom: 6px;
-    }
-
-    .field input,
-    .field textarea {
-      width: 100%;
-      border: 1px solid #ddd;
-      background: white;
-      padding: 14px;
-      border-radius: 10px;
-      outline: none;
-    }
-
-    .field textarea {
-      min-height: 140px;
-      resize: vertical;
-    }
-
-    /* =========================
-       FOOTER
-    ========================= */
-
-    footer {
-      background: #050505;
-      color: white;
-      padding: 60px 20px;
-    }
-
-    .footer-grid {
-      max-width: 1200px;
-      margin: auto;
-      display: grid;
-      grid-template-columns: 2fr 1fr 1fr;
-      gap: 40px;
-    }
-
-    footer p,
-    footer a {
-      color: #999;
-      font-size: 14px;
-    }
-
-    footer h4 {
-      margin-bottom: 12px;
-    }
-
-    .copyright {
-      max-width: 1200px;
-      margin: 40px auto 0;
-      padding-top: 20px;
-      border-top: 1px solid #222;
-      color: #666;
-      font-size: 12px;
-    }
-
-    /* =========================
-       CART
-    ========================= */
-
-    .overlay {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,.5);
-      z-index: 1500;
-    }
-
-    .overlay.active {
-      display: block;
-    }
-
-    .cart {
-      position: absolute;
-      right: 0;
-      top: 0;
-      height: 100%;
-      width: min(450px,100%);
-      background: white;
-      padding: 25px;
-      overflow-y: auto;
-    }
-
-    .cart-header {
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 30px;
-    }
-
-    .close {
-      border: 0;
-      background: transparent;
-      font-size: 28px;
-    }
-
-    .cart-item {
-      padding: 18px 0;
-      border-bottom: 1px solid var(--border);
-      display: flex;
-      justify-content: space-between;
-      gap: 15px;
-    }
-
-    .cart-item small {
-      color: var(--gray);
-      display: block;
-    }
-
-    .cart-controls {
-      display: flex;
-      gap: 8px;
-      align-items: center;
-      margin-top: 8px;
-    }
-
-    .cart-controls button {
-      width: 28px;
-      height: 28px;
-      border: 1px solid #ddd;
-      background: white;
-      border-radius: 50%;
-    }
-
-    .remove {
-      border: 0;
-      background: transparent;
-      text-decoration: underline;
-      color: #888;
-    }
-
-    .cart-total {
-      display: flex;
-      justify-content: space-between;
-      font-size: 20px;
-      font-weight: 900;
-      margin: 25px 0;
-    }
-
-    .checkout-btn {
-      width: 100%;
-      padding: 16px;
-      background: black;
-      color: white;
-      border: 0;
-      border-radius: 12px;
-      font-weight: 900;
-    }
-
-    /* =========================
-       CHECKOUT
-    ========================= */
-
-    .checkout {
-      display: none;
-      position: fixed;
-      inset: 0;
-      z-index: 2000;
-      background: white;
-      overflow-y: auto;
-    }
-
-    .checkout.active {
-      display: block;
-    }
-
-    .checkout-container {
-      max-width: 1000px;
-      margin: auto;
-      padding: 35px 20px 80px;
-    }
-
-    .checkout-header {
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 45px;
-    }
-
-    .checkout-grid {
-      display: grid;
-      grid-template-columns: 1.2fr .8fr;
-      gap: 50px;
-    }
-
-    .checkout h1 {
-      font-size: 52px;
-      letter-spacing: -3px;
-      margin-bottom: 30px;
-    }
-
-    .two {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-    }
-
-    .summary {
-      background: var(--light);
-      padding: 25px;
-      border-radius: 20px;
-      height: fit-content;
-    }
-
-    .summary-row {
-      display: flex;
-      justify-content: space-between;
-      padding: 10px 0;
-    }
-
-    .summary-total {
-      border-top: 1px solid #ddd;
-      margin-top: 10px;
-      padding-top: 18px;
-      display: flex;
-      justify-content: space-between;
-      font-size: 20px;
-      font-weight: 900;
-    }
-
-    /* =========================
-       LEGAL MODAL
-    ========================= */
-
-    .legal-modal {
-      display: none;
-      position: fixed;
-      inset: 0;
-      z-index: 3000;
-      background: rgba(0,0,0,.55);
-      padding: 20px;
-      overflow-y: auto;
-    }
-
-    .legal-modal.active {
-      display: block;
-    }
-
-    .legal-box {
-      max-width: 800px;
-      margin: 40px auto;
-      background: white;
-      border-radius: 20px;
-      padding: 35px;
-    }
-
-    .legal-box h2 {
-      margin-bottom: 20px;
-    }
-
-    .legal-box h3 {
-      margin-top: 25px;
-      margin-bottom: 8px;
-    }
-
-    .legal-box p {
-      color: #555;
-      margin-bottom: 10px;
-    }
-
-    /* =========================
-       MOBILE
-    ========================= */
-
-    @media(max-width:800px) {
-
-      .nav-links {
-        display: none;
-      }
-
-      .hero-grid,
-      .product-grid,
-      .checkout-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .features {
-        grid-template-columns: 1fr;
-      }
-
-      .footer-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .product-scene {
-        transform: scale(.8);
-      }
-
-      .btn {
-        width: 100%;
-      }
-
-      .btn-light {
-        margin-left: 0;
-        margin-top: 8px;
-      }
-
-      .two {
-        grid-template-columns: 1fr;
-      }
-
-      .checkout h1 {
-        font-size: 42px;
-      }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NOVA DROP — NOVA STAND</title>
+<meta name="description" content="NOVA DROP — NOVA STAND, support pliable pour ordinateur portable.">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:Arial,Helvetica,sans-serif;
+  background:#f6f7f9;
+  color:#111;
+  line-height:1.5
+}
+a{text-decoration:none;color:inherit}
+button,input,textarea{font:inherit}
+
+header{
+  position:sticky;
+  top:0;
+  z-index:50;
+  background:rgba(255,255,255,.95);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid #e7e7e7
+}
+.nav{
+  max-width:1150px;
+  margin:auto;
+  padding:16px 22px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between
+}
+.logo{
+  font-size:22px;
+  font-weight:900;
+  letter-spacing:1px
+}
+.logo span{color:#555}
+nav{display:flex;gap:22px;font-size:14px;font-weight:700}
+nav a:hover{color:#666}
+
+.hero{
+  min-height:650px;
+  display:flex;
+  align-items:center;
+  background:#111;
+  color:white
+}
+.hero-inner{
+  max-width:1150px;
+  width:100%;
+  margin:auto;
+  padding:70px 22px;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:60px;
+  align-items:center
+}
+.badge{
+  display:inline-block;
+  background:#fff;
+  color:#111;
+  padding:8px 13px;
+  border-radius:30px;
+  font-size:12px;
+  font-weight:800;
+  margin-bottom:18px
+}
+.hero h1{
+  font-size:clamp(44px,7vw,76px);
+  line-height:.95;
+  margin-bottom:25px
+}
+.hero p{
+  color:#ccc;
+  max-width:500px;
+  font-size:18px;
+  margin-bottom:30px
+}
+.btn{
+  border:0;
+  cursor:pointer;
+  border-radius:12px;
+  padding:15px 22px;
+  font-weight:800;
+  transition:.2s
+}
+.btn-primary{
+  background:white;
+  color:#111
+}
+.btn-primary:hover{transform:translateY(-2px)}
+.btn-dark{
+  background:#111;
+  color:white
+}
+.btn-dark:hover{opacity:.85}
+
+.product-visual{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  min-height:360px
+}
+.stand{
+  width:330px;
+  height:220px;
+  position:relative;
+  transform:perspective(700px) rotateX(8deg) rotateY(-12deg)
+}
+.stand .top{
+  position:absolute;
+  width:300px;
+  height:185px;
+  left:15px;
+  top:10px;
+  border-radius:14px;
+  background:linear-gradient(145deg,#dfe3e7,#9ca3aa);
+  box-shadow:0 25px 45px rgba(0,0,0,.45)
+}
+.stand .top:after{
+  content:"";
+  position:absolute;
+  width:125px;
+  height:125px;
+  left:88px;
+  top:30px;
+  border-radius:50%;
+  border:3px solid rgba(255,255,255,.35)
+}
+.stand .leg{
+  position:absolute;
+  width:270px;
+  height:18px;
+  background:#8d949b;
+  left:30px;
+  top:190px;
+  border-radius:10px;
+  transform:rotate(18deg)
+}
+.stand .logo{
+  position:absolute;
+  z-index:2;
+  left:112px;
+  top:82px;
+  color:#222;
+  font-size:17px;
+  font-weight:900
+}
+
+section{padding:80px 22px}
+.container{max-width:1150px;margin:auto}
+.section-title{
+  font-size:38px;
+  margin-bottom:12px
+}
+.section-sub{
+  color:#666;
+  max-width:650px;
+  margin-bottom:40px
+}
+
+.features{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:20px
+}
+.card{
+  background:white;
+  border:1px solid #e7e7e7;
+  border-radius:18px;
+  padding:28px
+}
+.card h3{margin:12px 0 8px}
+.card p{color:#666;font-size:15px}
+.icon{
+  width:42px;
+  height:42px;
+  border-radius:12px;
+  background:#111;
+  color:white;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:900
+}
+
+.product{
+  background:white
+}
+.product-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:60px;
+  align-items:center
+}
+.product-box{
+  background:#f0f1f3;
+  border-radius:24px;
+  min-height:430px;
+  display:flex;
+  align-items:center;
+  justify-content:center
+}
+.product-info h2{font-size:45px;margin-bottom:15px}
+.price{
+  font-size:34px;
+  font-weight:900;
+  margin:20px 0
+}
+.old{
+  font-size:17px;
+  color:#999;
+  text-decoration:line-through;
+  margin-right:8px
+}
+.product-info ul{
+  list-style:none;
+  margin:25px 0
+}
+.product-info li{
+  margin:12px 0;
+  color:#444
+}
+.product-info li:before{
+  content:"✓";
+  font-weight:bold;
+  margin-right:10px
+}
+
+.gallery{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:18px
+}
+.gallery-card{
+  height:230px;
+  border-radius:18px;
+  background:linear-gradient(135deg,#e7e9ec,#b8bec5);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:900;
+  color:#444
+}
+
+.dark-section{
+  background:#111;
+  color:white
+}
+.dark-section .section-sub{color:#bbb}
+.dark-section .card{
+  background:#191919;
+  border-color:#292929
+}
+.dark-section .card p{color:#aaa}
+
+.faq{
+  max-width:800px;
+  margin:auto
+}
+details{
+  background:white;
+  border:1px solid #e5e5e5;
+  border-radius:14px;
+  margin:12px 0;
+  padding:18px 20px
+}
+summary{
+  cursor:pointer;
+  font-weight:800
+}
+details p{
+  color:#666;
+  margin-top:12px
+}
+
+.contact{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:50px
+}
+form{
+  background:white;
+  border:1px solid #e5e5e5;
+  border-radius:18px;
+  padding:25px
+}
+label{
+  display:block;
+  font-weight:700;
+  font-size:14px;
+  margin:15px 0 7px
+}
+input,textarea{
+  width:100%;
+  border:1px solid #ddd;
+  border-radius:10px;
+  padding:13px;
+  outline:none
+}
+input:focus,textarea:focus{border-color:#111}
+textarea{min-height:120px;resize:vertical}
+
+footer{
+  background:#111;
+  color:#aaa;
+  padding:35px 22px
+}
+.footer-inner{
+  max-width:1150px;
+  margin:auto;
+  display:flex;
+  justify-content:space-between;
+  gap:20px;
+  flex-wrap:wrap
+}
+footer strong{color:white}
+
+.modal{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.65);
+  z-index:100;
+  padding:20px;
+  overflow:auto
+}
+.modal-box{
+  max-width:600px;
+  margin:50px auto;
+  background:white;
+  border-radius:20px;
+  padding:30px
+}
+.close{
+  float:right;
+  border:0;
+  background:#eee;
+  border-radius:50%;
+  width:35px;
+  height:35px;
+  cursor:pointer
+}
+
+.notice{
+  background:#fff8df;
+  border:1px solid #ead98d;
+  color:#665600;
+  border-radius:12px;
+  padding:14px;
+  margin:20px 0;
+  font-size:14px
+}
+
+@media(max-width:800px){
+  nav{display:none}
+  .hero-inner,
+  .product-grid,
+  .contact{
+    grid-template-columns:1fr
+  }
+  .hero{min-height:auto}
+  .hero-inner{padding:60px 22px}
+  .features{grid-template-columns:1fr}
+  .gallery{grid-template-columns:1fr}
+  .product-info h2{font-size:38px}
+}
+</style>
 </head>
 
 <body>
 
-<!-- =====================================================
-     HEADER
-===================================================== -->
-
 <header>
-
-  <nav class="nav">
-
-    <a href="#" class="logo">
-      NOVA DROP
-    </a>
-
-    <div class="nav-links">
+  <div class="nav">
+    <a href="#" class="logo">NOVA<span>DROP</span></a>
+    <nav>
       <a href="#produit">Produit</a>
       <a href="#avantages">Avantages</a>
       <a href="#faq">FAQ</a>
       <a href="#contact">Contact</a>
-    </div>
-
-    <button class="cart-btn" onclick="openCart()">
-      Panier (<span id="cartCount">0</span>)
-    </button>
-
-  </nav>
-
+    </nav>
+  </div>
 </header>
 
-
-<!-- =====================================================
-     HERO
-===================================================== -->
+<main>
 
 <section class="hero">
-
-  <div class="hero-grid">
-
+  <div class="hero-inner">
     <div>
-
-      <div class="eyebrow">
-        NOVA DROP / 001
-      </div>
-
-      <h1>
-        NOVA<br>
-        STAND.
-      </h1>
-
+      <span class="badge">NOUVEAU • NOVA STAND</span>
+      <h1>Travaille mieux.<br>Partout.</h1>
       <p>
-        Un support pliable pour ordinateur portable,
-        pensé pour un setup simple, pratique et minimaliste.
+        Un support pliable pensé pour améliorer le confort de ton ordinateur
+        portable, à la maison comme en déplacement.
       </p>
-
-      <a href="#produit" class="btn">
-        Découvrir
-      </a>
-
-      <a href="#faq" class="btn btn-light">
-        FAQ
-      </a>
-
+      <a href="#produit" class="btn btn-primary">Découvrir NOVA STAND</a>
     </div>
 
-    <div class="visual">
-
-      <div class="product-scene">
-
-        <div class="laptop">
-          <div class="screen"></div>
-        </div>
-
-        <div class="stand"></div>
-
-        <div class="stand-base"></div>
-
+    <div class="product-visual">
+      <div class="stand">
+        <div class="top"></div>
+        <div class="leg"></div>
+        <div class="logo">NOVA</div>
       </div>
-
     </div>
-
   </div>
-
 </section>
-
-
-<!-- =====================================================
-     AVANTAGES
-===================================================== -->
 
 <section id="avantages">
-
   <div class="container">
-
-    <div class="eyebrow">
-      NOVA STAND
-    </div>
-
-    <h2 class="section-title">
-      Pensé pour<br>
-      ton setup.
-    </h2>
-
-    <div class="features">
-
-      <article class="feature">
-        <div class="feature-number">01</div>
-        <h3>Pliable</h3>
-        <p>
-          Se replie facilement pour être rangé ou transporté.
-        </p>
-      </article>
-
-      <article class="feature">
-        <div class="feature-number">02</div>
-        <h3>Aluminium</h3>
-        <p>
-          Structure légère avec un design sobre.
-        </p>
-      </article>
-
-      <article class="feature">
-        <div class="feature-number">03</div>
-        <h3>Réglable</h3>
-        <p>
-          Plusieurs positions selon le modèle choisi.
-        </p>
-      </article>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- =====================================================
-     PRODUIT
-===================================================== -->
-
-<section id="produit">
-
-  <div class="container">
-
-    <div class="product-grid">
-
-      <div>
-
-        <div class="gallery-main" id="gallery">
-
-          <div class="product-scene">
-
-            <div class="laptop">
-              <div class="screen"></div>
-            </div>
-
-            <div class="stand"></div>
-
-            <div class="stand-base"></div>
-
-          </div>
-
-        </div>
-
-        <div class="gallery-buttons">
-
-          <button onclick="galleryView(1)">
-            Vue 01
-          </button>
-
-          <button onclick="galleryView(2)">
-            Vue 02
-          </button>
-
-          <button onclick="galleryView(3)">
-            Vue 03
-          </button>
-
-        </div>
-
-        <p style="font-size:12px;color:#888;margin-top:10px;">
-          Maquettes visuelles. Remplace-les par les véritables
-          photos du produit avant publication commerciale.
-        </p>
-
-      </div>
-
-
-      <div class="product-info">
-
-        <div class="eyebrow">
-          PRODUCT 001
-        </div>
-
-        <h2>NOVA STAND</h2>
-
-        <p class="subtitle">
-          Support pliable pour ordinateur portable
-        </p>
-
-        <div class="price">
-          29,90 €
-          <span class="old-price">
-            39,90 €
-          </span>
-        </div>
-
-        <p class="price-note">
-          Prix de démonstration à confirmer avant mise en vente.
-        </p>
-
-        <p class="description">
-          NOVA STAND est un support compact destiné à surélever
-          un ordinateur portable et à organiser l'espace de travail.
-        </p>
-
-        <ul class="specs">
-
-          <li>
-            <span>Matière</span>
-            <strong>Aluminium</strong>
-          </li>
-
-          <li>
-            <span>Format</span>
-            <strong>Pliable</strong>
-          </li>
-
-          <li>
-            <span>Compatibilité</span>
-            <strong>Environ 11–17"</strong>
-          </li>
-
-          <li>
-            <span>Surface</span>
-            <strong>Antidérapante</strong>
-          </li>
-
-        </ul>
-
-        <div class="quantity">
-
-          <button onclick="changeProductQty(-1)">
-            −
-          </button>
-
-          <strong id="productQty">
-            1
-          </strong>
-
-          <button onclick="changeProductQty(1)">
-            +
-          </button>
-
-        </div>
-
-        <button class="add-cart" onclick="addToCart()">
-          Ajouter au panier — 29,90 €
-        </button>
-
-        <div class="info-box">
-          <strong>🚚 Livraison</strong>
-          <br>
-          Délai à renseigner après vérification du fournisseur.
-        </div>
-
-        <div class="info-box">
-          <strong>↩ Retours</strong>
-          <br>
-          Les conditions définitives doivent être publiées avant
-          toute vente.
-        </div>
-
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- =====================================================
-     DARK SECTION
-===================================================== -->
-
-<section class="dark">
-
-  <div class="container">
-
-    <div class="eyebrow">
-      NOVA PHILOSOPHY
-    </div>
-
-    <h2 class="section-title">
-      LESS.<br>
-      BUT BETTER.
-    </h2>
-
-    <p>
-      NOVA DROP vise des accessoires simples et utiles
-      pour les espaces de travail modernes.
+    <h2 class="section-title">Simple. Pratique. Portable.</h2>
+    <p class="section-sub">
+      NOVA STAND est conçu pour accompagner ton ordinateur sans prendre
+      beaucoup de place.
     </p>
 
-  </div>
+    <div class="features">
+      <div class="card">
+        <div class="icon">01</div>
+        <h3>Pliable</h3>
+        <p>Se replie facilement pour être transporté dans un sac.</p>
+      </div>
 
+      <div class="card">
+        <div class="icon">02</div>
+        <h3>Stable</h3>
+        <p>Une base pensée pour maintenir ton ordinateur pendant son utilisation.</p>
+      </div>
+
+      <div class="card">
+        <div class="icon">03</div>
+        <h3>Minimaliste</h3>
+        <p>Un design sobre qui s'intègre facilement dans un bureau.</p>
+      </div>
+    </div>
+  </div>
 </section>
 
+<section id="produit" class="product">
+  <div class="container product-grid">
 
-<!-- =====================================================
-     FAQ
-===================================================== -->
-
-<section id="faq">
-
-  <div class="container">
-
-    <div class="eyebrow">
-      QUESTIONS
+    <div class="product-box">
+      <div class="stand">
+        <div class="top"></div>
+        <div class="leg"></div>
+        <div class="logo">NOVA</div>
+      </div>
     </div>
 
-    <h2 class="section-title">
-      FAQ
-    </h2>
+    <div class="product-info">
+      <span class="badge">NOVA STAND</span>
+      <h2>Ton setup.<br>Élevé.</h2>
 
-    <div class="faq">
+      <p>
+        Un support pliable au design minimaliste pour améliorer
+        l'organisation de ton espace de travail.
+      </p>
 
-      <div class="faq-item">
-
-        <button
-          class="faq-question"
-          onclick="toggleFAQ(this)"
-        >
-          À quels ordinateurs convient NOVA STAND ?
-          <span>+</span>
-        </button>
-
-        <div class="faq-answer">
-          La fiche actuelle vise les ordinateurs d'environ
-          11 à 17 pouces. Les dimensions exactes doivent être
-          vérifiées auprès du fournisseur avant publication.
-        </div>
-
+      <div class="price">
+        <span class="old">39,90 €</span>
+        29,90 €
       </div>
 
+      <ul>
+        <li>Format pliable</li>
+        <li>Design minimaliste</li>
+        <li>Facile à transporter</li>
+        <li>Compatible avec de nombreux ordinateurs portables</li>
+      </ul>
 
-      <div class="faq-item">
-
-        <button
-          class="faq-question"
-          onclick="toggleFAQ(this)"
-        >
-          Le support est-il pliable ?
-          <span>+</span>
-        </button>
-
-        <div class="faq-answer">
-          Le modèle de référence est présenté comme pliable.
-          Vérifie cette caractéristique sur la fiche fournisseur
-          exacte que tu utiliseras.
-        </div>
-
-      </div>
-
-
-      <div class="faq-item">
-
-        <button
-          class="faq-question"
-          onclick="toggleFAQ(this)"
-        >
-          Combien coûte la livraison ?
-          <span>+</span>
-        </button>
-
-        <div class="faq-answer">
-          Le tarif de livraison n'est pas encore définitif.
-          Il doit être calculé à partir du fournisseur,
-          de la destination et du mode d'expédition réel.
-        </div>
-
-      </div>
-
-
-      <div class="faq-item">
-
-        <button
-          class="faq-question"
-          onclick="toggleFAQ(this)"
-        >
-          Puis-je retourner le produit ?
-          <span>+</span>
-        </button>
-
-        <div class="faq-answer">
-          Pour une vente à distance à un consommateur, le droit
-          de rétractation est en principe de 14 jours, sous réserve
-          des exceptions légales. Les conditions exactes doivent
-          être affichées avant la commande.
-        </div>
-
-      </div>
-
-
-      <div class="faq-item">
-
-        <button
-          class="faq-question"
-          onclick="toggleFAQ(this)"
-        >
-          Comment fonctionne le paiement ?
-          <span>+</span>
-        </button>
-
-        <div class="faq-answer">
-          Cette version est un prototype. Aucun paiement réel
-          n'est traité par ce fichier.
-        </div>
-
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- =====================================================
-     CONTACT
-===================================================== -->
-
-<section id="contact" class="contact">
-
-  <div class="container">
-
-    <div class="eyebrow">
-      CONTACT
-    </div>
-
-    <h2 class="section-title">
-      Une question ?
-    </h2>
-
-    <form
-      class="contact-form"
-      onsubmit="contactForm(event)"
-    >
-
-      <div class="field">
-
-        <label>
-          Email
-        </label>
-
-        <input
-          type="email"
-          required
-          placeholder="ton@email.com"
-        >
-
-      </div>
-
-      <div class="field">
-
-        <label>
-          Message
-        </label>
-
-        <textarea
-          required
-          placeholder="Ton message..."
-        ></textarea>
-
-      </div>
-
-      <button class="btn" type="submit">
-        Envoyer
+      <button class="btn btn-dark" onclick="openOrder()">
+        Faire une demande de commande
       </button>
 
+      <div class="notice">
+        Version test : aucune carte bancaire n'est demandée et aucun paiement
+        n'est effectué sur ce site.
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <h2 class="section-title">NOVA STAND</h2>
+    <p class="section-sub">
+      Aperçu du produit et de son utilisation.
+    </p>
+
+    <div class="gallery">
+      <div class="gallery-card">VUE 01</div>
+      <div class="gallery-card">VUE 02</div>
+      <div class="gallery-card">VUE 03</div>
+    </div>
+  </div>
+</section>
+
+<section class="dark-section">
+  <div class="container">
+    <h2 class="section-title">Pensé pour ton quotidien.</h2>
+    <p class="section-sub">
+      Un accessoire simple pour créer un espace de travail plus confortable.
+    </p>
+
+    <div class="features">
+      <div class="card">
+        <h3>Maison</h3>
+        <p>Pour travailler, étudier ou regarder du contenu depuis ton bureau.</p>
+      </div>
+
+      <div class="card">
+        <h3>Études</h3>
+        <p>Facile à transporter entre la maison et les cours.</p>
+      </div>
+
+      <div class="card">
+        <h3>Déplacement</h3>
+        <p>Son format pliable permet de gagner de la place dans ton sac.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="container faq">
+    <h2 class="section-title">FAQ</h2>
+
+    <details>
+      <summary>Comment fonctionne une demande de commande ?</summary>
+      <p>
+        Tu remplis le formulaire avec tes coordonnées et tu envoies ta demande.
+        Aucun paiement n'est effectué sur cette version test.
+      </p>
+    </details>
+
+    <details>
+      <summary>Quel est le prix affiché ?</summary>
+      <p>
+        Le prix de test affiché est de 29,90 €. Il devra être confirmé avant
+        toute commercialisation réelle.
+      </p>
+    </details>
+
+    <details>
+      <summary>Quand le produit est-il expédié ?</summary>
+      <p>
+        Les délais de livraison ne sont pas encore définis sur cette version
+        de démonstration.
+      </p>
+    </details>
+
+    <details>
+      <summary>Puis-je payer sur ce site ?</summary>
+      <p>
+        Non. Cette version sert uniquement à tester les demandes de commande.
+      </p>
+    </details>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="container contact">
+
+    <div>
+      <h2 class="section-title">Une question ?</h2>
+      <p class="section-sub">
+        Utilise ce formulaire pour tester le contact avec NOVA DROP.
+      </p>
+    </div>
+
+    <form onsubmit="sendContact(event)">
+      <label for="contactName">Nom</label>
+      <input id="contactName" required>
+
+      <label for="contactEmail">E-mail</label>
+      <input id="contactEmail" type="email" required>
+
+      <label for="contactMessage">Message</label>
+      <textarea id="contactMessage" required></textarea>
+
+      <button class="btn btn-dark" type="submit">
+        Envoyer
+      </button>
     </form>
 
   </div>
-
 </section>
 
-
-<!-- =====================================================
-     FOOTER
-===================================================== -->
+</main>
 
 <footer>
-
-  <div class="footer-grid">
-
+  <div class="footer-inner">
     <div>
-
-      <div class="logo">
-        NOVA DROP
-      </div>
-
-      <p style="margin-top:12px;max-width:350px;">
-        Accessoires minimalistes pour ton espace quotidien.
-      </p>
-
+      <strong>NOVA DROP</strong><br>
+      <small>Prototype e-commerce</small>
     </div>
 
-
     <div>
-
-      <h4>Boutique</h4>
-
-      <p>
-        <a href="#produit">
-          NOVA STAND
-        </a>
-      </p>
-
-      <p>
-        <a href="#faq">
-          FAQ
-        </a>
-      </p>
-
+      <button onclick="openLegal('mentions')" class="btn" style="background:transparent;color:white;padding:5px">
+        Mentions légales
+      </button>
+      <button onclick="openLegal('cgv')" class="btn" style="background:transparent;color:white;padding:5px">
+        CGV
+      </button>
+      <button onclick="openLegal('privacy')" class="btn" style="background:transparent;color:white;padding:5px">
+        Confidentialité
+      </button>
     </div>
-
-
-    <div>
-
-      <h4>Informations</h4>
-
-      <p>
-        <a href="#" onclick="openLegal('mentions');return false;">
-          Mentions légales
-        </a>
-      </p>
-
-      <p>
-        <a href="#" onclick="openLegal('cgv');return false;">
-          CGV
-        </a>
-      </p>
-
-      <p>
-        <a href="#" onclick="openLegal('privacy');return false;">
-          Confidentialité
-        </a>
-      </p>
-
-      <p>
-        <a href="#" onclick="openLegal('returns');return false;">
-          Retours
-        </a>
-      </p>
-
-    </div>
-
   </div>
-
-
-  <div class="copyright">
-    © 2026 NOVA DROP — Prototype.
-  </div>
-
 </footer>
 
+<!-- MODAL COMMANDE -->
+<div class="modal" id="orderModal">
+  <div class="modal-box">
+    <button class="close" onclick="closeOrder()">×</button>
 
-<!-- =====================================================
-     CART
-===================================================== -->
+    <h2>Demande de commande</h2>
+    <p style="color:#666;margin:10px 0 20px">
+      NOVA STAND — 29,90 € (prix de test)
+    </p>
 
-<div
-  class="overlay"
-  id="cartOverlay"
-  onclick="closeCartOutside(event)"
->
+    <div class="notice">
+      Ceci est une demande de commande de démonstration.
+      Aucun paiement ne sera demandé.
+    </div>
 
-  <div
-    class="cart"
-    onclick="event.stopPropagation()"
-  >
+    <form onsubmit="submitOrder(event)">
 
-    <div class="cart-header">
+      <label for="orderName">Nom</label>
+      <input id="orderName" required>
 
-      <h2>
-        Panier
-      </h2>
+      <label for="orderEmail">E-mail</label>
+      <input id="orderEmail" type="email" required>
 
-      <button
-        class="close"
-        onclick="closeCart()"
-      >
-        ×
+      <label for="orderQuantity">Quantité</label>
+      <input id="orderQuantity" type="number" min="1" value="1" required>
+
+      <label for="orderMessage">Message (facultatif)</label>
+      <textarea id="orderMessage" placeholder="Question ou précision..."></textarea>
+
+      <button class="btn btn-dark" type="submit">
+        Envoyer ma demande
       </button>
 
-    </div>
-
-    <div id="cartItems"></div>
-
-    <div class="cart-total">
-
-      <span>
-        Total
-      </span>
-
-      <span id="cartTotal">
-        0,00 €
-      </span>
-
-    </div>
-
-    <button
-      class="checkout-btn"
-      onclick="openCheckout()"
-    >
-      Continuer
-    </button>
-
+    </form>
   </div>
-
 </div>
 
-
-<!-- =====================================================
-     CHECKOUT
-===================================================== -->
-
-<div
-  class="checkout"
-  id="checkout"
->
-
-  <div class="checkout-container">
-
-    <div class="checkout-header">
-
-      <div class="logo">
-        NOVA DROP
-      </div>
-
-      <button
-        class="close"
-        onclick="closeCheckout()"
-      >
-        ×
-      </button>
-
-    </div>
-
-
-    <div class="checkout-grid">
-
-      <div>
-
-        <h1>
-          Checkout
-        </h1>
-
-        <form onsubmit="submitCheckout(event)">
-
-          <div class="two">
-
-            <div class="field">
-
-              <label>
-                Prénom
-              </label>
-
-              <input
-                id="firstName"
-                required
-              >
-
-            </div>
-
-            <div class="field">
-
-              <label>
-                Nom
-              </label>
-
-              <input
-                id="lastName"
-                required
-              >
-
-            </div>
-
-          </div>
-
-
-          <div class="field">
-
-            <label>
-              Email
-            </label>
-
-            <input
-              id="email"
-              type="email"
-              required
-            >
-
-          </div>
-
-
-          <div class="field">
-
-            <label>
-              Adresse
-            </label>
-
-            <input
-              id="address"
-              required
-            >
-
-          </div>
-
-
-          <div class="two">
-
-            <div class="field">
-
-              <label>
-                Code postal
-              </label>
-
-              <input
-                id="postal"
-                required
-              >
-
-            </div>
-
-            <div class="field">
-
-              <label>
-                Ville
-              </label>
-
-              <input
-                id="city"
-                required
-              >
-
-            </div>
-
-          </div>
-
-
-          <div class="field">
-
-            <label>
-              Livraison
-            </label>
-
-            <select
-              id="shipping"
-              onchange="updateCheckout()"
-            >
-
-              <option value="4.90">
-                Livraison standard — 4,90 €
-              </option>
-
-              <option value="0">
-                Livraison offerte — 0 €
-              </option>
-
-            </select>
-
-          </div>
-
-
-          <button
-            class="add-cart"
-            type="submit"
-          >
-            Commande avec obligation de paiement
-          </button>
-
-        </form>
-
-        <p
-          style="
-            color:#777;
-            font-size:12px;
-            margin-top:12px;
-          "
-        >
-          Prototype : aucun paiement réel n'est traité.
-        </p>
-
-      </div>
-
-
-      <aside class="summary">
-
-        <h3>
-          Résumé
-        </h3>
-
-        <div id="checkoutItems"></div>
-
-        <div class="summary-row">
-
-          <span>
-            Sous-total
-          </span>
-
-          <span id="checkoutSubtotal">
-            0,00 €
-          </span>
-
-        </div>
-
-        <div class="summary-row">
-
-          <span>
-            Livraison
-          </span>
-
-          <span id="checkoutShipping">
-            4,90 €
-          </span>
-
-        </div>
-
-        <div class="summary-total">
-
-          <span>
-            Total
-          </span>
-
-          <span id="checkoutTotal">
-            0,00 €
-          </span>
-
-        </div>
-
-      </aside>
-
-    </div>
-
-  </div>
-
-</div>
-
-
-<!-- =====================================================
-     LEGAL MODAL
-===================================================== -->
-
-<div
-  class="legal-modal"
-  id="legalModal"
-  onclick="closeLegalOutside(event)"
->
-
-  <div
-    class="legal-box"
-    onclick="event.stopPropagation()"
-  >
-
-    <div style="
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      margin-bottom:25px;
-    ">
-
-      <strong>
-        NOVA DROP
-      </strong>
-
-      <button
-        class="close"
-        onclick="closeLegal()"
-      >
-        ×
-      </button>
-
-    </div>
-
-
+<!-- MODAL LEGAL -->
+<div class="modal" id="legalModal">
+  <div class="modal-box">
+    <button class="close" onclick="closeLegal()">×</button>
     <div id="legalContent"></div>
-
   </div>
-
 </div>
-
 
 <script>
+function openOrder(){
+  document.getElementById("orderModal").style.display="block";
+}
 
-  /* =====================================================
-     CONFIGURATION
-  ===================================================== */
+function closeOrder(){
+  document.getElementById("orderModal").style.display="none";
+}
 
-  const PRODUCT = {
-    id: "nova-stand",
-    name: "NOVA STAND",
-    price: 29.90
-  };
+function submitOrder(event){
+  event.preventDefault();
+
+  const name=document.getElementById("orderName").value;
+  const email=document.getElementById("orderEmail").value;
+  const quantity=document.getElementById("orderQuantity").value;
+  const message=document.getElementById("orderMessage").value;
+
+  const total=(29.90 * Number(quantity)).toFixed(2);
+
+  const subject=encodeURIComponent("Demande NOVA STAND");
+  const body=encodeURIComponent(
+    "Demande de commande NOVA STAND\n\n"+
+    "Nom : "+name+"\n"+
+    "E-mail : "+email+"\n"+
+    "Quantité : "+quantity+"\n"+
+    "Montant indicatif : "+total+" €\n"+
+    "Message : "+message+"\n\n"+
+    "IMPORTANT : ceci est une demande de commande de démonstration."
+  );
 
   /*
-    IMPORTANT :
-
-    Remplace cette valeur uniquement par un vrai
-    système de paiement lorsque le vendeur légal
-    et le compte marchand seront correctement configurés.
-
-    Ne mets jamais de clé API secrète dans ce fichier.
+    Remplace cette adresse uniquement par une adresse e-mail
+    que tu contrôles lorsque ton système de contact sera prêt.
   */
-
-  const PAYMENT_LINK = "TON_LIEN_DE_PAIEMENT";
-
-
-  let cart =
-    JSON.parse(
-      localStorage.getItem("novaCart")
-    ) || [];
-
-
-  let productQty = 1;
-
-
-  /* =====================================================
-     PRICE
-  ===================================================== */
-
-  function money(value) {
-
-    return value
-      .toFixed(2)
-      .replace(".", ",") + " €";
-
-  }
-
-
-  /* =====================================================
-     PRODUCT QUANTITY
-  ===================================================== */
-
-  function changeProductQty(amount) {
-
-    productQty += amount;
-
-    if (productQty < 1)
-      productQty = 1;
-
-    if (productQty > 10)
-      productQty = 10;
-
-    document.getElementById(
-      "productQty"
-    ).textContent = productQty;
-
-  }
-
-
-  /* =====================================================
-     CART STORAGE
-  ===================================================== */
-
-  function saveCart() {
-
-    localStorage.setItem(
-      "novaCart",
-      JSON.stringify(cart)
-    );
-
-  }
-
-
-  /* =====================================================
-     ADD TO CART
-  ===================================================== */
-
-  function addToCart() {
-
-    const existing =
-      cart.find(
-        item => item.id === PRODUCT.id
-      );
-
-
-    if (existing) {
-
-      existing.quantity += productQty;
-
-    } else {
-
-      cart.push({
-        id: PRODUCT.id,
-        name: PRODUCT.name,
-        price: PRODUCT.price,
-        quantity: productQty
-      });
-
-    }
-
-
-    saveCart();
-
-    productQty = 1;
-
-    document.getElementById(
-      "productQty"
-    ).textContent = "1";
-
-    updateCart();
-
-    openCart();
-
-  }
-
-
-  /* =====================================================
-     CART QUANTITY
-  ===================================================== */
-
-  function changeCartQty(id, amount) {
-
-    const item =
-      cart.find(
-        item => item.id === id
-      );
-
-    if (!item)
-      return;
-
-
-    item.quantity += amount;
-
-
-    if (item.quantity <= 0) {
-
-      cart =
-        cart.filter(
-          item => item.id !== id
-        );
-
-    }
-
-
-    saveCart();
-
-    updateCart();
-
-  }
-
-
-  /* =====================================================
-     REMOVE
-  ===================================================== */
-
-  function removeItem(id) {
-
-    cart =
-      cart.filter(
-        item => item.id !== id
-      );
-
-    saveCart();
-
-    updateCart();
-
-  }
-
-
-  /* =====================================================
-     UPDATE CART
-  ===================================================== */
-
-  function updateCart() {
-
-    const items =
-      document.getElementById(
-        "cartItems"
-      );
-
-
-    const count =
-      cart.reduce(
-        (sum,item) =>
-          sum + item.quantity,
-        0
-      );
-
-
-    const total =
-      cart.reduce(
-        (sum,item) =>
-          sum +
-          item.price *
-          item.quantity,
-        0
-      );
-
-
-    document.getElementById(
-      "cartCount"
-    ).textContent = count;
-
-
-    document.getElementById(
-      "cartTotal"
-    ).textContent =
-      money(total);
-
-
-    if (!cart.length) {
-
-      items.innerHTML = `
-        <p style="color:#888;">
-          Ton panier est vide.
-        </p>
-      `;
-
-      return;
-
-    }
-
-
-    items.innerHTML =
-      cart.map(item => `
-
-        <div class="cart-item">
-
-          <div>
-
-            <strong>
-              ${item.name}
-            </strong>
-
-            <small>
-              ${money(item.price)}
-            </small>
-
-            <div class="cart-controls">
-
-              <button
-                onclick="changeCartQty('${item.id}',-1)"
-              >
-                −
-              </button>
-
-              <strong>
-                ${item.quantity}
-              </strong>
-
-              <button
-                onclick="changeCartQty('${item.id}',1)"
-              >
-                +
-              </button>
-
-            </div>
-
-          </div>
-
-          <button
-            class="remove"
-            onclick="removeItem('${item.id}')"
-          >
-            Supprimer
-          </button>
-
-        </div>
-
-      `).join("");
-
-  }
-
-
-  /* =====================================================
-     CART OPEN/CLOSE
-  ===================================================== */
-
-  function openCart() {
-
-    updateCart();
-
-    document
-      .getElementById("cartOverlay")
-      .classList.add("active");
-
-  }
-
-
-  function closeCart() {
-
-    document
-      .getElementById("cartOverlay")
-      .classList.remove("active");
-
-  }
-
-
-  function closeCartOutside(event) {
-
-    if (
-      event.target.id ===
-      "cartOverlay"
-    ) {
-
-      closeCart();
-
-    }
-
-  }
-
-
-  /* =====================================================
-     CHECKOUT
-  ===================================================== */
-
-  function openCheckout() {
-
-    if (!cart.length) {
-
-      alert(
-        "Ton panier est vide."
-      );
-
-      return;
-
-    }
-
-
-    closeCart();
-
-    updateCheckout();
-
-    document
-      .getElementById("checkout")
-      .classList.add("active");
-
-  }
-
-
-  function closeCheckout() {
-
-    document
-      .getElementById("checkout")
-      .classList.remove("active");
-
-  }
-
-
-  function updateCheckout() {
-
-    const items =
-      document.getElementById(
-        "checkoutItems"
-      );
-
-
-    const subtotal =
-      cart.reduce(
-        (sum,item) =>
-          sum +
-          item.price *
-          item.quantity,
-        0
-      );
-
-
-    const shipping =
-      Number(
-        document.getElementById(
-          "shipping"
-        ).value
-      );
-
-
-    items.innerHTML =
-      cart.map(item => `
-
-        <div class="summary-row">
-
-          <span>
-            ${item.name} × ${item.quantity}
-          </span>
-
-          <span>
-            ${money(
-              item.price *
-              item.quantity
-            )}
-          </span>
-
-        </div>
-
-      `).join("");
-
-
-    document.getElementById(
-      "checkoutSubtotal"
-    ).textContent =
-      money(subtotal);
-
-
-    document.getElementById(
-      "checkoutShipping"
-    ).textContent =
-      money(shipping);
-
-
-    document.getElementById(
-      "checkoutTotal"
-    ).textContent =
-      money(
-        subtotal + shipping
-      );
-
-  }
-
-
-  /* =====================================================
-     CHECKOUT SUBMIT
-  ===================================================== */
-
-  function submitCheckout(event) {
-
-    event.preventDefault();
-
-
-    if (!cart.length) {
-
-      alert(
-        "Ton panier est vide."
-      );
-
-      return;
-
-    }
-
-
-    if (
-      PAYMENT_LINK ===
-      "TON_LIEN_DE_PAIEMENT"
-    ) {
-
-      alert(
-        "Le checkout fonctionne en mode démonstration. Un vrai système de paiement doit encore être connecté."
-      );
-
-      return;
-
-    }
-
-
-    window.location.href =
-      PAYMENT_LINK;
-
-  }
-
-
-  /* =====================================================
-     FAQ
-  ===================================================== */
-
-  function toggleFAQ(button) {
-
-    const item =
-      button.parentElement;
-
-
-    item.classList.toggle(
-      "open"
-    );
-
-
-    button.querySelector(
-      "span"
-    ).textContent =
-      item.classList.contains("open")
-        ? "−"
-        : "+";
-
-  }
-
-
-  /* =====================================================
-     GALLERY
-  ===================================================== */
-
-  function galleryView(number) {
-
-    const gallery =
-      document.getElementById(
-        "gallery"
-      );
-
-
-    if (number === 1) {
-
-      gallery.innerHTML = `
-        <div class="product-scene">
-          <div class="laptop">
-            <div class="screen"></div>
-          </div>
-          <div class="stand"></div>
-          <div class="stand-base"></div>
-        </div>
-      `;
-
-    }
-
-
-    if (number === 2) {
-
-      gallery.innerHTML = `
-        <div
-          class="product-scene"
-          style="transform:rotate(8deg) scale(.9);"
-        >
-          <div class="laptop">
-            <div class="screen"></div>
-          </div>
-          <div class="stand"></div>
-          <div class="stand-base"></div>
-        </div>
-      `;
-
-    }
-
-
-    if (number === 3) {
-
-      gallery.innerHTML = `
-        <div
-          class="product-scene"
-          style="transform:rotate(-7deg) scale(.85);"
-        >
-          <div class="stand"></div>
-          <div class="stand-base"></div>
-        </div>
-      `;
-
-    }
-
-  }
-
-
-  /* =====================================================
-     CONTACT
-  ===================================================== */
-
-  function contactForm(event) {
-
-    event.preventDefault();
-
-    alert(
-      "Formulaire de démonstration : aucun message n'est encore envoyé à un serveur."
-    );
-
-    event.target.reset();
-
-  }
-
-
-  /* =====================================================
-     LEGAL CONTENT
-  ===================================================== */
-
-  const legalPages = {
-
-    mentions: `
-
+  window.location.href=
+    "mailto:contact@exemple.com?subject="+subject+"&body="+body;
+}
+
+function sendContact(event){
+  event.preventDefault();
+
+  const name=document.getElementById("contactName").value;
+  const email=document.getElementById("contactEmail").value;
+  const message=document.getElementById("contactMessage").value;
+
+  const subject=encodeURIComponent("Contact NOVA DROP");
+  const body=encodeURIComponent(
+    "Nom : "+name+"\n"+
+    "E-mail : "+email+"\n\n"+
+    message
+  );
+
+  window.location.href=
+    "mailto:contact@exemple.com?subject="+subject+"&body="+body;
+}
+
+function openLegal(type){
+  const content=document.getElementById("legalContent");
+
+  if(type==="mentions"){
+    content.innerHTML=`
       <h2>Mentions légales</h2>
-
-      <p>
-        Cette page est un modèle à compléter avant toute
-        commercialisation.
+      <p style="margin-top:15px">
+        Cette page est un modèle de démonstration et doit être complétée avec
+        les informations réelles du vendeur avant toute commercialisation.
       </p>
-
-      <h3>Éditeur</h3>
-
-      <p>
-        Nom / raison sociale : À COMPLÉTER
+      <p style="margin-top:15px">
+        Nom / entreprise : À COMPLÉTER<br>
+        Adresse : À COMPLÉTER<br>
+        E-mail : À COMPLÉTER<br>
+        Téléphone : À COMPLÉTER<br>
+        Hébergeur : GitHub Pages
       </p>
+    `;
+  }
 
-      <p>
-        Adresse : À COMPLÉTER
-      </p>
-
-      <p>
-        Email : À COMPLÉTER
-      </p>
-
-      <p>
-        Téléphone : À COMPLÉTER
-      </p>
-
-      <p>
-        Numéro d'immatriculation : À COMPLÉTER
-      </p>
-
-      <h3>Hébergement</h3>
-
-      <p>
-        Hébergeur : À COMPLÉTER
-      </p>
-
-      <p>
-        Adresse de l'hébergeur : À COMPLÉTER
-      </p>
-
-    `,
-
-
-    cgv: `
-
+  if(type==="cgv"){
+    content.innerHTML=`
       <h2>Conditions générales de vente</h2>
-
-      <p>
-        Cette page est un modèle et ne doit pas être utilisée
-        telle quelle pour une vraie activité commerciale.
+      <p style="margin-top:15px">
+        Cette page est un modèle de démonstration. Les conditions réelles,
+        notamment concernant les prix, la livraison, les retours, le droit
+        de rétractation et les garanties, doivent être rédigées avant toute
+        vente réelle.
       </p>
-
-      <h3>Produit</h3>
-
-      <p>
-        Les caractéristiques, dimensions, disponibilité et
-        photos du produit doivent correspondre au produit
-        réellement vendu.
-      </p>
-
-      <h3>Prix</h3>
-
-      <p>
-        Les prix affichés doivent être les prix réellement
-        applicables au consommateur, avec les informations
-        relatives aux frais de livraison.
-      </p>
-
-      <h3>Livraison</h3>
-
-      <p>
-        Le délai de livraison réel doit être indiqué avant
-        la commande.
-      </p>
-
-      <h3>Rétractation</h3>
-
-      <p>
-        Le consommateur bénéficie en principe d'un délai légal
-        de rétractation de 14 jours pour une vente à distance,
-        sous réserve des exceptions prévues par la loi.
-      </p>
-
-    `,
-
-
-    privacy: `
-
-      <h2>Politique de confidentialité</h2>
-
-      <p>
-        Cette page doit expliquer quelles données sont collectées,
-        pourquoi elles sont collectées, combien de temps elles
-        sont conservées et quels sont les droits des personnes.
-      </p>
-
-      <h3>Données</h3>
-
-      <p>
-        Exemple : nom, adresse, email et informations nécessaires
-        au traitement d'une commande.
-      </p>
-
-      <p>
-        Ne collecte pas de données dont tu n'as pas besoin et
-        ne stocke jamais de données bancaires dans ce fichier.
-      </p>
-
-    `,
-
-
-    returns: `
-
-      <h2>Retours et rétractation</h2>
-
-      <p>
-        Cette page doit présenter les conditions réelles de retour
-        applicables au produit.
-      </p>
-
-      <h3>Délai</h3>
-
-      <p>
-        Pour une vente à distance à un consommateur, le délai légal
-        de rétractation est en principe de 14 jours, sous réserve
-        des exceptions prévues par la réglementation.
-      </p>
-
-      <h3>Procédure</h3>
-
-      <p>
-        Adresse email de retour : À COMPLÉTER
-      </p>
-
-      <p>
-        Adresse de retour : À COMPLÉTER
-      </p>
-
-    `
-
-  };
-
-
-  function openLegal(page) {
-
-    document.getElementById(
-      "legalContent"
-    ).innerHTML =
-      legalPages[page];
-
-
-    document
-      .getElementById("legalModal")
-      .classList.add("active");
-
+    `;
   }
 
-
-  function closeLegal() {
-
-    document
-      .getElementById("legalModal")
-      .classList.remove("active");
-
+  if(type==="privacy"){
+    content.innerHTML=`
+      <h2>Confidentialité</h2>
+      <p style="margin-top:15px">
+        Cette version de démonstration ne dispose pas d'une base de données
+        permettant de stocker les commandes. Toute collecte réelle de données
+        devra être configurée conformément aux règles applicables.
+      </p>
+    `;
   }
 
+  document.getElementById("legalModal").style.display="block";
+}
 
-  function closeLegalOutside(event) {
+function closeLegal(){
+  document.getElementById("legalModal").style.display="none";
+}
 
-    if (
-      event.target.id ===
-      "legalModal"
-    ) {
-
-      closeLegal();
-
-    }
-
+window.onclick=function(event){
+  if(event.target===document.getElementById("orderModal")){
+    closeOrder();
   }
 
-
-  /* =====================================================
-     INIT
-  ===================================================== */
-
-  updateCart();
-
+  if(event.target===document.getElementById("legalModal")){
+    closeLegal();
+  }
+}
 </script>
 
 </body>
 </html>
+```
